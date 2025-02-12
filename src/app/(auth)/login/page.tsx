@@ -36,7 +36,7 @@ export default function LoginForm() {
     });
     console.log(resp)
     if (resp!.ok === true) {
-       router.replace("/")
+       router.replace("/Dashboard")
        setTimeout(()=>{
         setloginLoad(false);
        },5000)

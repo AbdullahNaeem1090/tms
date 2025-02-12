@@ -40,11 +40,11 @@ export default function InputOTPForm() {
       const resp = await axios.post("/api/admin/verify", data);
       console.log(resp);
 
-       if(resp.data="Incorrect or Expired OTP"){
+       if(resp.data.message=="Incorrect or Expired OTP"){
         setVerifyLoader(false);
         toast.error("Invalid or expired OTP")
       }else{
-        router.replace("/");
+        router.replace("/Dashboard");
         setVerifyLoader(false);
       }
     } catch (error) {

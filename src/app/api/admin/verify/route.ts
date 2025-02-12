@@ -8,14 +8,13 @@ export async function POST(request: NextRequest) {
     const { pin } = await request.json();
     const unverifiedAdmin = await AdminModel.findOne({ OTP: pin ,otpExpiry:{$gt:Date.now()}});
     if (!unverifiedAdmin) {
-      console.log("called")
       return NextResponse.json({ message: "Incorrect or Expired OTP" });
     }
 
     unverifiedAdmin.isVerified = true;
     const verifiedAdmin = await unverifiedAdmin.save();
-
-    return NextResponse.json(verifiedAdmin, { status: 200 });
+console.log(verifiedAdmin)
+    return NextResponse.json(verifiedAdmin);
 
   } catch (error) {
     return NextResponse.json({ error }, { status: 400 });
